@@ -1,17 +1,47 @@
-# React + Vite
+# JobFinder Bot Frontend (React UI Dashboard)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React single-page application built on Vite. It implements a dark-mode styled console containing statistics, charts, jobs search lists, RAG chunks monitoring, logs monitoring, and review boards.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technical Architecture
 
-## React Compiler
+### 1. State Management & API Hooks
+- **Axios HTTP Client:** Located in `src/services/api.js`. Configured with automatic interceptors that retrieve JWT tokens from localStorage and perform silent session refreshes on 401 response codes.
+- **Form Handling:** Utilizes `react-hook-form` coupled with `zodResolver` to validate schemas on fields like logins, custom keys, and settings.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Routes & Guarding
+- **React Router:** Router settings are defined in `src/App.jsx`.
+- **Protected Routing:** A `ProtectedRoute` wrapper component intercepts route changes, verifying if a token exists in browser memory. If absent, it redirects the browser to `/login`.
 
-## Expanding the ESLint configuration
+### 3. CSS Style Theme
+- **Obsidian Theme:** Configured inside `src/index.css`. Tailors HSL variables for dark obsidian layers, glassmorphic card backdrops, glowing svg progress meters, and dynamic hover animations.
+- **Light Theme Support:** Standard fallback triggers adjust variables for slate modes.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# jobFinderBot-frontend
+---
+
+## Page Components
+
+- **Login Page (`Login.jsx`):** Renders a secure login portal using form validation.
+- **Dashboard (`Dashboard.jsx`):** Renders KPI cards (crawler health, match success ratios) and Recharts charts showing weekly trends and platform distributions.
+- **Jobs Board (`Jobs.jsx`):** Shows paginated lists of crawls and progress matches.
+- **Job Details (`JobDetails.jsx`):** Shows RAG context summaries, keywords, and progress sliders for suitability metrics.
+- **Approval Queue (`ApprovalQueue.jsx`):** The primary workstation containing Approve, Edit, Reject, and Preview modules.
+- **Knowledge Base (`KnowledgeBase.jsx`):** Scraper control dashboard containing trigger buttons, crawl logs, crawled pages list, and chunk searches.
+- **Settings Controller (`Settings.jsx`):** A tabbed page managing API keys, platform credentials, system prompts, and programmatic key generation.
+- **Logs Page (`LogsPage.jsx`):** Exposes backend scheduler run records, audit logs, and system logs.
+
+---
+
+## Production Build
+
+To build the optimized static asset package:
+1. Navigate to the frontend directory:
+   ```bash
+   cd jobFinderBot-frontend
+   ```
+2. Build the project:
+   ```bash
+   npm run build
+   ```
+3. The build assets will be generated in the `dist/` folder, ready for host deployment on Vercel.
