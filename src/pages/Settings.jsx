@@ -251,6 +251,91 @@ export default function Settings() {
               onSave={handleSaveSetting}
               saving={savingKey === 'linkedin_password'}
             />
+
+            <SettingField 
+              label="LinkedIn Client Secret"
+              configKey="linkedin_client_secret"
+              value={formData.linkedin_client_secret}
+              isSecret={true}
+              description="LinkedIn Developer Portal Client Secret key."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'linkedin_client_secret'}
+            />
+
+            <SettingField 
+              label="LinkedIn Access Token"
+              configKey="linkedin_access_token"
+              value={formData.linkedin_access_token}
+              isSecret={true}
+              description="LinkedIn Developer Access Token."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'linkedin_access_token'}
+            />
+
+            <SettingField 
+              label="Facebook Graph API Token"
+              configKey="facebook_api_key"
+              value={formData.facebook_api_key}
+              isSecret={true}
+              description="Official Facebook Graph access token for Page/Group crawls."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'facebook_api_key'}
+            />
+
+            <SettingField 
+              label="Facebook App ID"
+              configKey="facebook_app_id"
+              value={formData.facebook_app_id}
+              description="Official Facebook developer application ID."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'facebook_app_id'}
+            />
+
+            <SettingField 
+              label="Instagram Username"
+              configKey="instagram_username"
+              value={formData.instagram_username}
+              description="Instagram account profile handle."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'instagram_username'}
+            />
+
+            <SettingField 
+              label="Instagram Password"
+              configKey="instagram_password"
+              value={formData.instagram_password}
+              isSecret={true}
+              description="Instagram account password."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'instagram_password'}
+            />
+
+            <SettingField 
+              label="Threads Username"
+              configKey="threads_username"
+              value={formData.threads_username}
+              description="Threads account profile handle."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'threads_username'}
+            />
+
+            <SettingField 
+              label="Threads Password"
+              configKey="threads_password"
+              value={formData.threads_password}
+              isSecret={true}
+              description="Threads account password."
+              onChange={handleChange}
+              onSave={handleSaveSetting}
+              saving={savingKey === 'threads_password'}
+            />
           </div>
         )}
 

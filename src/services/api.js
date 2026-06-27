@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+let tempBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+if (tempBaseUrl && !tempBaseUrl.endsWith('/api') && !tempBaseUrl.endsWith('/api/')) {
+  tempBaseUrl = tempBaseUrl.endsWith('/') ? `${tempBaseUrl}api` : `${tempBaseUrl}/api`;
+}
+const API_BASE_URL = tempBaseUrl;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -14,7 +18,7 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers[ 'Authorization' ] = `Bearer ${token}`;
     }
     return config;
   },
@@ -45,7 +49,7 @@ api.interceptors.response.use(
           localStorage.setItem('refreshToken', newRefreshToken);
         }
 
-        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        originalRequest.headers[ 'Authorization' ] = `Bearer ${accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
         logOut();

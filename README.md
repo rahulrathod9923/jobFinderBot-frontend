@@ -28,7 +28,7 @@ A React single-page application built on Vite. It implements a dark-mode styled 
 - **Job Details (`JobDetails.jsx`):** Shows RAG context summaries, keywords, and progress sliders for suitability metrics.
 - **Approval Queue (`ApprovalQueue.jsx`):** The primary workstation containing Approve, Edit, Reject, and Preview modules.
 - **Knowledge Base (`KnowledgeBase.jsx`):** Scraper control dashboard containing trigger buttons, crawl logs, crawled pages list, and chunk searches.
-- **Settings Controller (`Settings.jsx`):** A tabbed page managing API keys, platform credentials, system prompts, and programmatic key generation.
+- **Settings Controller (`Settings.jsx`):** A tabbed page managing API keys, platform credentials, system prompts, and programmatic key generation. Contains input fields to feed username/password/API tokens dynamically for LinkedIn, Facebook, Instagram, and Threads.
 - **Logs Page (`LogsPage.jsx`):** Exposes backend scheduler run records, audit logs, and system logs.
 
 ---
@@ -45,3 +45,7 @@ To build the optimized static asset package:
    npm run build
    ```
 3. The build assets will be generated in the `dist/` folder, ready for host deployment on Vercel.
+
+
+supabase db push
+supabase gen types typescript --linked > jobFinderBot-frontend/src/types/database.ts
